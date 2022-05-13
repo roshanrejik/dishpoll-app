@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 const store=configureStore()
 store.subscribe(()=>{
   console.log(store.getState());
+  localStorage.setItem('token',JSON.stringify(store.getState()))
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
