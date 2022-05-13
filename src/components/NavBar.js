@@ -12,11 +12,13 @@ const NavBar=(props)=>{
         setPopUp(!popUp)
     }
     const handleLogout=()=>{
-        localStorage.removeItem('token')
+        const loc=JSON.parse(localStorage.getItem('token'))
+        loc.activeUser={}
+        localStorage.setItem('token',JSON.stringify(loc))
         setAuth(false)
     }
     useEffect(()=>{
-        if(JSON.parse(localStorage.getItem('token'))){
+        if(Object.keys(JSON.parse(localStorage.getItem('token')).activeUser).length>0){
             setAuth(true)
             dispatch(startLoginUser(JSON.parse(localStorage.getItem('token')).activeUser))
         }
