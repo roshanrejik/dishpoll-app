@@ -4,3 +4,9 @@ export const startLoginUser=(user)=>{
         type:'LOGINUSER',payload:user
     }
  }
+ 
+export const startLogOutUser=()=>{
+    return {
+        type:'LOGOUTUSER'
+    }
+ }

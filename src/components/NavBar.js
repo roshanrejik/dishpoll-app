@@ -3,7 +3,7 @@ import Home from "./Home";
 import { Link, Route } from "react-router-dom";
 import Login from "./Login";
 import { useDispatch } from "react-redux";
-import { startLoginUser } from "../action/activeUserAction";
+import { startLoginUser,startLogOutUser } from "../action/activeUserAction";
 const NavBar=(props)=>{
     const [popUp, setPopUp] = useState(false)
     const [auth,setAuth]=useState(false)
@@ -12,15 +12,15 @@ const NavBar=(props)=>{
         setPopUp(!popUp)
     }
     const handleLogout=()=>{
-        const loc=JSON.parse(localStorage.getItem('token'))
-        loc.activeUser={}
-        localStorage.setItem('token',JSON.stringify(loc))
+        dispatch(startLogOutUser())
         setAuth(false)
     }
     useEffect(()=>{
-        if(Object.keys(JSON.parse(localStorage.getItem('token')).activeUser).length>0){
-            setAuth(true)
-            dispatch(startLoginUser(JSON.parse(localStorage.getItem('token')).activeUser))
+        if(localStorage.getItem('token')){
+            if(Object.keys(JSON.parse(localStorage.getItem('token')).activeUser).length>0){
+                setAuth(true)
+                dispatch(startLoginUser(JSON.parse(localStorage.getItem('token')).activeUser))
+            }
         }
     },[])
     return(
@@ -35,7 +35,7 @@ const NavBar=(props)=>{
                 :<button className="btn btn-dark m-1" style={{float:'right'}} onClick={handlePopUp}>Login</button>
             }
            </div>
-            <Route path='/' component={Home} exact />
+            <Route path='/'  exact ><Home/></Route>
               <Login popUp={popUp} setAuth={setAuth} handlePopUp={handlePopUp}/>
 
        </div>

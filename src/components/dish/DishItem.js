@@ -10,12 +10,16 @@ const DishItem=(props)=>{
         setPoll(!poll)
     }
     const activeUserId=useSelector(state=>state.activeUser.id)
+
+    useEffect(()=>{
+        setPoll(false)
+    },[activeUserId])
     useEffect(()=>{
         poll&&dispatch(startAddRank({DishId,activeUserId}))
     },[poll])
     return(
         <div  className={"col"} style={{ width: '16rem'}} >
-    <div className="card mt-2 p-2  border shadow rounded" style={{background:poll?'lightblue':'white'}} >
+    <div className="card mt-2 p-2  border shadow rounded" style={{background:poll&&activeUserId?'lightblue':'white'}} >
       <img src={`https://source.unsplash.com/random/300x250?sig=${DishId}`}  onClick={activeUserId?handlePoll:()=>{Swal.fire('Please Login')}} alt="a snow-capped mountain range"/>
       <div className="card-body">
         <h2 className="card-title">Name : {dishName}</h2>

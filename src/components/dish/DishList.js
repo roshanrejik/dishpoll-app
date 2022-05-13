@@ -52,7 +52,7 @@ const DishList =(props)=>{
         
         <div  className=" row pt-2 text-wrap bd-highlight justify-content-around " style={{width:'100%'}}>
             {
-                 dataOrder(orderBy).filter(dish=>{
+                  dishes.length>0 &&dataOrder(orderBy).filter(dish=>{
                     return dish.dishName.toLowerCase().includes(searchKey)
                 }).map(dish=>{return <DishItem key={dish.id} {...dish}/>})
             }

@@ -5,7 +5,7 @@ const DishContainer=(props)=>{
     return (
         <div>
             <AddRank/>
-            <DishList/>
+            <DishList />
         </div>
     )
 }
