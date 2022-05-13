@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from "react-redux";
 import {startGetDishList} from './action/dishAction'
-
+import './app.css'
 function App() {
   const dispatch=useDispatch()
   useEffect(()=>{
