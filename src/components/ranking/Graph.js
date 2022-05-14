@@ -16,21 +16,26 @@ const Graph=()=>{
         ['Houston, TX', 2099000],
         ['Philadelphia, PA', 1526000]
       ]
-      const {rankList}=useSelector(state=>state)
-      const result={}
-      console.log(Object.values(rankList));
+      const {rankList,dishes}=useSelector(state=>state)
+
+
+      const result={'Dishes': 'Ranking'}
       for(let i=0;i<Object.values(rankList).length;i++){
           for(let j=0;j<Object.values(rankList)[i].length;j++){
-            result[Object.values(rankList)[i][j]]=result[Object.values(rankList)[i][j]]?result[Object.values(rankList)[i][j]]+10*(3-j):10*(3-j)
+            if(dishes.find(ele=>ele.id==Object.values(rankList)[i][j])?dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName:'')
+            {
+              result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]=result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]?result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]+10*(3-j):10*(3-j)
+            }
         }
       }
-      console.log(result);
+    const data1=Object.entries(result)
+
     return(
         <div>
       <div className=" m-5 bg-light rounded border shadow box">
       <Chart
       height={400}
-        data={data}
+        data={data1}
         chartType="ColumnChart"
         loader={<div>Loading Chart...</div>}
       />
