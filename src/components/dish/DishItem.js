@@ -4,9 +4,8 @@ import Swal from 'sweetalert2'
 import { startAddRank } from "../../action/rankAction";
 const DishItem=(props)=>{
     const {id:DishId,dishName,description,image}=props
-    const activeUserId=useSelector(state=>state.activeUser.id)
-    const userRankList=useSelector(state=>state.rankList[activeUserId])
-
+    const activeUserId=useSelector(state=>state.activeUser.id)||''
+    const userRankList=useSelector(state=>state.rankList[activeUserId])||''
     const [poll,setPoll]=useState(false)
     const dispatch=useDispatch()
     const handlePoll=()=>{

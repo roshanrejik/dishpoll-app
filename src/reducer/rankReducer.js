@@ -1,5 +1,5 @@
 const init=JSON.parse(localStorage.getItem('token'))?JSON.parse(localStorage.getItem('token')).rankList:{}
-const rankReducer=(state=init,action)=>{console.log('init',state);
+const rankReducer=(state=init,action)=>{
     switch(action.type){
         case 'ADDRANK':
             if(state[action.payload.activeUserId]){
