@@ -8,8 +8,8 @@ const configureStore=()=>{
     const store=createStore(combineReducers({
         users:usersReducer,
         activeUser:activeUserReducer,
-        dishes:dishReducer,
-        rankList:rankReducer
+        rankList:rankReducer,
+        dishes:dishReducer
     }),applyMiddleware(thunk))
     return store
 }
