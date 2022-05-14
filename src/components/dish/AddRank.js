@@ -12,7 +12,7 @@ const AddRank=(props)=>{
             <h2>Add Your 3 Poll</h2><br/>
             <div>
            {
-               rankList.hasOwnProperty(id)&&rankList[id].length>0&& rankList[id].map((dish,i)=>{return <h2 key={dish}>{i+1}.{dishes.find(dis=>{return dis.id==dish})?dishes.find(dis=>{return dis.id==dish}).dishName:''} <button className="btn btn-light" onClick={()=>{dispatch(startRemoveDishOfUser({DishId:dish,activeUserId:id}))}}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/1024px-Crystal_button_cancel.svg.png" alt="Cancel"  style={{width:'25px'}} /></button> </h2>})
+               rankList.hasOwnProperty(id)&&rankList[id].length>0? rankList[id].map((dish,i)=>{return <h2 key={dish}>{i+1}.{dishes.find(dis=>{return dis.id==dish})?dishes.find(dis=>{return dis.id==dish}).dishName:''} <button className="btn btn-light" onClick={()=>{dispatch(startRemoveDishOfUser({DishId:dish,activeUserId:id}))}}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/1024px-Crystal_button_cancel.svg.png" alt="Cancel"  style={{width:'25px'}} /></button> </h2>}):<h3>Click On the Image to Poll</h3>
            }
             </div>
             </div>

@@ -31,7 +31,8 @@ const Graph=()=>{
     const data1=Object.entries(result)
 
     return(
-        <div>
+      
+      <div>
       <div className=" m-5 bg-light rounded border shadow box">
       <Chart
       height={400}
@@ -40,7 +41,7 @@ const Graph=()=>{
         loader={<div>Loading Chart...</div>}
       />
            <div className="card-body rounded box" style={{ backgroundColor: 'black', color: 'white', textAlign: 'center' }}>
-                            <div className="card-title" ><h3>Sales Chart</h3></div>
+                            <div className="card-title" ><h3>Dish Poll Ranking</h3></div>
            </div>
            
     </div>
