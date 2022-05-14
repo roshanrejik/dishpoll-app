@@ -4,6 +4,7 @@ import { Link, Route } from "react-router-dom";
 import Login from "./Login";
 import { useDispatch } from "react-redux";
 import { startLoginUser,startLogOutUser } from "../action/activeUserAction";
+import Ranking from "./ranking/Ranking";
 const NavBar=(props)=>{
     const [popUp, setPopUp] = useState(false)
     const [auth,setAuth]=useState(false)
@@ -36,6 +37,7 @@ const NavBar=(props)=>{
             }
            </div>
             <Route path='/'  exact ><Home/></Route>
+            <Route path='/Ranking'  exact ><Ranking/></Route>
               <Login popUp={popUp} setAuth={setAuth} handlePopUp={handlePopUp}/>
 
        </div>
