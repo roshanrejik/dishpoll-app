@@ -16,7 +16,6 @@ const Graph=()=>{
         }
       }
     const data1=Object.entries(result)
-    console.log(data1)
     data1.sort((a,b)=>b[1]-a[1])
     const showTopThree=data1.slice(1,4)
     return(
@@ -32,12 +31,12 @@ const Graph=()=>{
         </div>
       <div className=" m-5 bg-light rounded border shadow box">
       
-      <Chart
+      {data1.length>1?<Chart
       height={400}
         data={data1}
         chartType="ColumnChart"
         loader={<div>Loading Chart...</div>}
-      />
+      />:<h2 className="m-2" >Please Add Polls</h2>}
            <div className="card-body rounded box" style={{ backgroundColor: 'black', color: 'white', textAlign: 'center' }}>
                             <div className="card-title" ><h3>Dish Poll Ranking</h3></div>
            </div>

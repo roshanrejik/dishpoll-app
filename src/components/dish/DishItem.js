@@ -17,7 +17,9 @@ const DishItem=(props)=>{
     useEffect(()=>{
         if(userRankList.length<3)
        {
-        poll&&dispatch(startAddRank({DishId,activeUserId}))
+          if(!userRankList.includes(DishId)){
+            poll&&dispatch(startAddRank({DishId,activeUserId}))
+          }
        }
 
     },[poll])
