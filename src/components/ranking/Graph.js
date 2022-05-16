@@ -2,20 +2,7 @@ import React from "react";
 import Chart from "react-google-charts";
 import { useSelector } from "react-redux";
 const Graph=()=>{
-    var data =[
-        ['Dishes', 'Ranking'],
-        ['New York City, NY', 8175000],
-        ['Los Angeles, CA', 3792000],
-        ['Chicago, IL', 2695000],
-        ['Houston, TX', 2099000],['New York City, NY', 8175000],
-        ['Los Angeles, CA', 3792000],
-        ['Chicago, IL', 2695000],
-        ['Houston, TX', 2099000],['New York City, NY', 8175000],
-        ['Los Angeles, CA', 3792000],
-        ['Chicago, IL', 2695000],
-        ['Houston, TX', 2099000],
-        ['Philadelphia, PA', 1526000]
-      ]
+
       const {rankList,dishes}=useSelector(state=>state)
 
 
@@ -29,11 +16,22 @@ const Graph=()=>{
         }
       }
     const data1=Object.entries(result)
-
+    console.log(data1)
+    data1.sort((a,b)=>b[1]-a[1])
+    const showTopThree=data1.slice(1,4)
     return(
       
       <div>
+        <div className="border p-5 m-5 shadow rounded">
+            <h2 style={{fontFamily:'Cursive'}}>Top Three Rankings</h2>
+             <div>
+           {
+               showTopThree.map((dish,i)=>{return <h3 className="d-inline m-3" key={dish}>{i+1}.{dish[0]}({dish[1]})</h3>})
+           }
+            </div>
+        </div>
       <div className=" m-5 bg-light rounded border shadow box">
+      
       <Chart
       height={400}
         data={data1}
