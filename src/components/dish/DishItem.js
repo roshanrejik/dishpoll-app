@@ -22,7 +22,7 @@ const DishItem=(props)=>{
     }
     return(
         <div  className={"col"} style={{ width: '16rem'}} >
-    <div className="card mt-2 p-2  border shadow rounded" >
+    <div className="card mt-2 p-2  border shadow rounded" style={{'backgroundColor':userRankList.includes(DishId)&&'lightBlue'}} >
       <img src={`https://source.unsplash.com/random/300x250?sig=${DishId}`} onClick={activeUserId?()=>{handlePoll()}:()=>{Swal.fire('Please Login')}} alt="a snow-capped mountain range"/>
       <div className="card-body">
         <h2 className="card-title">Name : {dishName}</h2>
