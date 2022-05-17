@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2'
 import { startAddRank } from "../../action/rankAction";
@@ -6,23 +6,20 @@ const DishItem=(props)=>{
     const {id:DishId,dishName,description,image}=props
     const activeUserId=useSelector(state=>state.activeUser.id)||''
     const userRankList=useSelector(state=>state.rankList[activeUserId])||''
-    const [poll,setPoll]=useState(false)
     const dispatch=useDispatch()
     const handlePoll=()=>{
-        setPoll(!poll)
+      if(userRankList.length<3)
+      {
+         if(!userRankList.includes(DishId)){
+           dispatch(startAddRank({DishId,activeUserId}))
+         }
+         else{
+           Swal.fire('Already Selected')
+         }
+      }else{
+        Swal.fire('Only 3 Polls Allowed ')
+      }
     }
-    useEffect(()=>{
-        setPoll(false)
-    },[activeUserId])
-    useEffect(()=>{
-        if(userRankList.length<3)
-       {
-          if(!userRankList.includes(DishId)){
-            poll&&dispatch(startAddRank({DishId,activeUserId}))
-          }
-       }
-
-    },[poll])
     return(
         <div  className={"col"} style={{ width: '16rem'}} >
     <div className="card mt-2 p-2  border shadow rounded" >
