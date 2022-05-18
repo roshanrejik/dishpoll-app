@@ -4,19 +4,24 @@ import { useSelector } from "react-redux";
 const Graph=()=>{
 
       const {rankList,dishes}=useSelector(state=>state)
-
-
-      const result={'Dishes': 'Ranking'}
+      /*
+      rankList={1:[24,17,2], 2: Array(3), 4: Array(3)}
+      */
+      const result={}
       for(let i=0;i<Object.values(rankList).length;i++){
           for(let j=0;j<Object.values(rankList)[i].length;j++){
-            if(dishes.find(ele=>ele.id==Object.values(rankList)[i][j])?dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName:'')
+            const tempDishObj=dishes.find(ele=>ele.id===Object.values(rankList)[i][j])
+            if(tempDishObj)
             {
-              result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]=result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]?result[dishes.find(ele=>ele.id==Object.values(rankList)[i][j]).dishName]+10*(3-j):10*(3-j)
+              result[tempDishObj.dishName]=result[tempDishObj.dishName]?result[tempDishObj.dishName]+10*(3-j):10*(3-j)
             }
         }
       }
-    const data1=Object.entries(result)
-    data1.sort((a,b)=>b[1]-a[1])
+      /*
+        result={Lasagne: 50, Sushi: 20, Pho: 20, Hummus: 30, Scotch Eggs: 20, …}
+      */
+    const data1=[['Dishes','Ranking'],...Object.entries(result)]
+    data1.sort((a,b)=>b[1]-a[1])/* for descending order */
     const showTopThree=data1.slice(1,4)
     return(
       
